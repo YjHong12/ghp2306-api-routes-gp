@@ -7,6 +7,8 @@ const { getAllCats, getCatById, updateCat, deleteCat } = require('../db');
 router.get('/', async (req, res, next) => {
     try {
         // write some code :)
+        const cats = await getAllCats();
+        res.send(cats);
     } catch (error) {
         next(error);
     }
@@ -16,6 +18,8 @@ router.get('/', async (req, res, next) => {
 router.get('/:catId', async (req, res, next) => {
     try {
         // write some code :)
+        const cat = await getCatById(req.params.catId);
+        res.send(cat);
     } catch (error) {
         next(error);
     }
@@ -25,6 +29,8 @@ router.get('/:catId', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
     try {
         // write some code :)
+        const cat = await createCat(req.body);
+        res.send(cat);
     } catch (error) {
         next(error);
     }
@@ -34,6 +40,8 @@ router.post('/', async (req, res, next) => {
 router.put('/:catId', async (req, res, next) => {
     try {
         // write some code :)
+        const cat = await updateCat(req.params.catId, req.body);
+        res.send(cat);
     } catch (error) {
         next(error);
     }
@@ -43,6 +51,8 @@ router.put('/:catId', async (req, res, next) => {
 router.delete('/:catId', async (req, res, next) => {
     try {
         // write some code :)
+        const cat = await deleteCat(req.params.catId);
+        res.send(cat);
     } catch (error) {
         next(error);
     }
